@@ -3,8 +3,8 @@ import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 const Navbar = () => {
   return (
     <div>
-      <div className="hidden lg:block">
-        <div className="flex  justify-between items-center px-[8%] py-[1%]  sticky top-0 z-10">
+      <div className="">
+        <div className="flex  justify-between items-center px-[8%] py-[1%] bg-white  sticky top-0 z-10 ">
           <ActiveLink to="/">
             <p className=" font-bold text-3xl">
               <span className="text-black">Find</span>
@@ -17,13 +17,13 @@ const Navbar = () => {
                 <ActiveLink to="/">Home</ActiveLink>
               </li>
               <li className="mx-2 px-2 navlink-hover">
-                <ActiveLink to="/instructors">Colleges</ActiveLink>
+                <ActiveLink to="/Colleges">Colleges</ActiveLink>
               </li>
               <li className="mx-2 px-2 navlink-hover">
-                <ActiveLink to="/classes">Admission</ActiveLink>
+                <ActiveLink to="/admission">Admission</ActiveLink>
               </li>
               <li className="mx-2 px-2 navlink-hover">
-                <ActiveLink to="/classes">My Colleges</ActiveLink>
+                <ActiveLink to="/mycolleges">My Colleges</ActiveLink>
               </li>
             </ul>
           </div>

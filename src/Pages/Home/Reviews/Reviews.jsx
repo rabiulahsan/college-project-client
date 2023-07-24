@@ -14,9 +14,9 @@ const Reviews = () => {
   return (
     <>
       <SectionTitle heading="Reviews"></SectionTitle>
-      <div className="grid gap-10 grid-cols-1 lg:grid-cols-3 px-[8%] pb-[5%] ">
-        {reviews.map((review) => (
-          <SingleReview key={review._id} review={review}></SingleReview>
+      <div className="grid gap-10 grid-cols-1 lg:grid-cols-3 px-[8%] py-[5%] ">
+        {reviews.map((rev) => (
+          <SingleReview key={rev._id} rev={rev}></SingleReview>
         ))}
       </div>
     </>
