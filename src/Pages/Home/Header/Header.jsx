@@ -1,4 +1,4 @@
-import slide3 from "../../../assets/slide-3.svg";
+import slide3 from "../../../assets/banner(1).png";
 const Header = () => {
   return (
     <div>
@@ -25,7 +25,7 @@ const Header = () => {
             </button>
           </div>
         </div>
-        <img className="h-[300px] lg:h-[500px] my-[5%]" src={slide3} alt="" />
+        <img className="h-[300px] lg:h-[500px] my-[5%] " src={slide3} alt="" />
       </div>
     </div>
   );
