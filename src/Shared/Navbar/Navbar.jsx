@@ -1,4 +1,4 @@
-import ActiveLink from "../../../Components/ActiveLink/ActiveLink";
+import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 
 const Navbar = () => {
   return (

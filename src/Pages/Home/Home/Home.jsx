@@ -1,5 +1,5 @@
 import Header from "../Header/Header";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../../../Shared/Navbar/Navbar";
 
 const Home = () => {
   return (
