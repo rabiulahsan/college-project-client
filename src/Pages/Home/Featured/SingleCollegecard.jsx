@@ -5,7 +5,6 @@ const SingleCollegecard = ({ clg }) => {
     name,
     image,
     admission_date,
-    rating,
     research_num,
     annual_events,
     annual_sports,
