@@ -2,7 +2,7 @@
 const SingleReview = ({ rev }) => {
   const { image, name, review } = rev;
   return (
-    <div className="border border-gray-400 p-4 text-center">
+    <div className="border border-gray-400 p-5 text-center">
       <img
         src={image}
         alt=""
