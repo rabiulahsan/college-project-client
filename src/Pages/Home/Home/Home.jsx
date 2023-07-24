@@ -2,6 +2,8 @@ import Header from "../Header/Header";
 import Navbar from "../../../Shared/Navbar/Navbar";
 import Featured from "../Featured/Featured";
 import Photo from "../Photo/Photo";
+import Research from "../Research/Research";
+import Reviews from "../Reviews/Reviews";
 
 const Home = () => {
   return (
@@ -10,6 +12,8 @@ const Home = () => {
       <Header></Header>
       <Featured></Featured>
       <Photo></Photo>
+      <Research></Research>
+      <Reviews></Reviews>
     </>
   );
 };
