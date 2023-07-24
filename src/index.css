@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active{
+    @apply text-green-400  font-bold
+}
+
+.navlink-hover{
+    @apply hover:text-green-400
+}
+
+.green-btn{
+    @apply text-lg text-white px-6 py-2 bg-green-400 rounded font-semibold
+}
