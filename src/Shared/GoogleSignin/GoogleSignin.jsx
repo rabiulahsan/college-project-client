@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hook/UseAuth";
 const GoogleSignin = () => {
   const { user, googleLogin } = UseAuth();
+  console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
 

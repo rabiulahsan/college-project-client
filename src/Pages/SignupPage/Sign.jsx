@@ -2,69 +2,69 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-// import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
 import { useState } from "react";
 import UseAuth from "../../Hook/UseAuth";
+import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
 
 const Sign = () => {
-  //   const {
-  //     register,
-  //     handleSubmit,
-  //     reset,
-  //     formState: { errors },
-  //   } = useForm();
-  //   const { createUser, updateUserProfile } = UseAuth();
-  //   const navigate = useNavigate();
-  //   const [error, seterror] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUserProfile } = UseAuth();
+  const navigate = useNavigate();
+  const [error, seterror] = useState("");
 
-  //   const onSubmit = (data) => {
-  //     // confirm password condition
-  //     if (data.password === data.confirmPassword) {
-  //       createUser(data.email, data.password).then((result) => {
-  //         const loggedUser = result.user;
-  //         console.log(loggedUser);
-  //         updateUserProfile(data.name, data.photoURL)
-  //           .then(() => {
-  //             const saveUser = {
-  //               name: data.name,
-  //               email: data.email,
-  //               role: "user",
-  //             };
-  //             fetch("http://localhost:5000/colleges/users", {
-  //               method: "POST",
-  //               headers: {
-  //                 "content-type": "application/json",
-  //               },
-  //               body: JSON.stringify(saveUser),
-  //             })
-  //               .then((res) => res.json())
-  //               .then((data) => {
-  //                 if (data.insertedId) {
-  //                   reset();
-  //                   Swal.fire({
-  //                     position: "top-end",
-  //                     icon: "success",
-  //                     title: "User created successfully.",
-  //                     showConfirmButton: false,
-  //                     timer: 1500,
-  //                   });
-  //                   navigate("/");
-  //                 }
-  //               });
-  //           })
-  //           .catch((error) => console.log(error));
-  //       });
-  //     } else {
-  //       seterror("Both password dont match");
-  //       return;
-  //     }
-  //   };
+  const onSubmit = (data) => {
+    // confirm password condition
+    if (data.password === data.confirmPassword) {
+      createUser(data.email, data.password).then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              role: "user",
+            };
+            fetch("http://localhost:5000/colleges/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User created successfully.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              });
+          })
+          .catch((error) => console.log(error));
+      });
+    } else {
+      seterror("Both password dont match");
+      return;
+    }
+  };
 
   return (
     <>
       <div className="flex justify-center items-center bg-[#ebeaf8] h-[710px]">
         <div className="card bg-white shadow-md rounded px-10 pt-8 pb-8 mb-4 w-1/4">
-          {/* <form onSubmit={handleSubmit(onSubmit)} className="">
+          <form onSubmit={handleSubmit(onSubmit)} className="">
             <div className="form-control">
               <label className="label block text-gray-700 text-sm font-bold">
                 <span className="label-text">Name</span>
@@ -179,18 +179,20 @@ const Sign = () => {
               )}
             </div>
 
-            <p className="text-red-600 my-5 text-lg">{error}</p> */}
+            <p className="text-red-600 my-5 text-lg">{error}</p>
 
-          {/* <div className="form-control mt-6">
+            <div className="form-control mt-6">
               <input
                 className="cursor-pointer text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 value="Sign Up"
               />
             </div>
-          </form> */}
+          </form>
           <p className="text-center text-gray-600 my-2">or</p>
-          <div className="my-5">{/* <GoogleSignin></GoogleSignin> */}</div>
+          <div className="my-5">
+            <GoogleSignin></GoogleSignin>
+          </div>
           <p className="flex flex-col text-center text-gray-500">
             Don&apos;t have an account?
             <Link to={"/login"}>
