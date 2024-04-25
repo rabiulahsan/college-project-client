@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import ActiveLink from "../../Components/ActiveLink/ActiveLink";
+import UseAuth from "../../Hook/UseAuth";
 
 const Navbar = () => {
+  const { user } = UseAuth();
   return (
     <div>
       <div className="">
@@ -29,9 +31,15 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="">
-            <Link to="/login">
-              <button className="green-btn">Log in</button>
-            </Link>
+            {user ? (
+              <Link to="/profile">
+                <button className="green-btn">{user?.displayName}</button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="green-btn">Log in</button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
