@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.active{
-    @apply text-green-400  font-bold
+.active {
+  @apply text-green-400  font-bold;
 }
 
-.navlink-hover{
-    @apply hover:text-green-400
+.navlink-hover {
+  @apply hover:text-green-400;
 }
 
-.green-btn{
-    @apply text-lg text-white px-6 py-2 bg-green-400 rounded font-semibold
+.green-btn {
+  @apply text-lg text-white px-6 py-2 bg-green-400 rounded font-semibold;
+}
+
+.input-style {
+  @apply shadow-md  border rounded w-3/4 py-2 px-4 text-gray-700 leading-tight input  border-slate-300 focus:outline-none bg-slate-100;
 }
