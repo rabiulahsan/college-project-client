@@ -7,11 +7,15 @@ import { useForm } from "react-hook-form";
 import PageBanner from "../../Components/PageBanner/PageBanner";
 import { useParams } from "react-router-dom";
 import UseAllColleges from "../../Hook/UseAllColleges";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 const CollegeFormPage = () => {
+  const [startDate, setStartDate] = useState(new Date());
   const [colleges] = UseAllColleges();
   const param = useParams();
-  console.log(param.id);
+  // console.log(param.id);
 
   const loadedData = colleges.filter((clg) => clg._id === param.id);
   console.log(loadedData);
@@ -47,25 +51,30 @@ const CollegeFormPage = () => {
     const newCollege = {
       ...data,
       email: user?.email,
+      dateOfBirth: startDate,
+      college_name: loadedData[0]?.name,
+      college_id: param.id,
     };
     console.log(newCollege);
-    fetch(`http://localhost:5000/`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newCollege),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data.insertedId) {
-          reset();
-          Toast.fire({
-            icon: "success",
-            title: "New blogs create successfully",
-          });
-        }
-      });
+
+    //todo
+    // fetch(`http://localhost:5000/`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(newCollege),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.data.insertedId) {
+    //       reset();
+    //       Toast.fire({
+    //         icon: "success",
+    //         title: "New blogs create successfully",
+    //       });
+    //     }
+    //   });
   };
   return (
     <div>
@@ -81,14 +90,13 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Name</span>
               </label>
               <input
+                readOnly
                 type="text"
                 placeholder="Name"
+                value={user?.displayName}
                 {...register("std_name", { required: true, maxLength: 25 })}
                 className="input-style"
               />
-              {errors.std_name && (
-                <span className="text-red-600">Student Name is required</span>
-              )}
             </div>
 
             {/* email  */}
@@ -97,14 +105,13 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Email</span>
               </label>
               <input
+                readOnly
                 type="text"
                 placeholder="Email"
+                value={user?.email}
                 {...register("std_email", { required: true, maxLength: 25 })}
                 className="input-style"
               />
-              {errors.std_email && (
-                <span className="text-red-600">Email is required</span>
-              )}
             </div>
 
             {/* subject  */}
@@ -121,6 +128,19 @@ const CollegeFormPage = () => {
               {errors.subject && (
                 <span className="text-red-600">subject is required</span>
               )}
+            </div>
+
+            {/* date of birth */}
+            <div className="form-control w-full mb-4">
+              <label className="label block text-gray-700 text-sm font-bold">
+                <span className="label-text font-semibold">Date of Birth</span>
+              </label>
+              <DatePicker
+                selected={startDate} // use state to store selected date
+                onChange={(date) => setStartDate(date)} // handle date change
+                dateFormat="MM/dd/yyyy" // format for displaying date
+                className="input-style"
+              />
             </div>
 
             {/* image url  */}
