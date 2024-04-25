@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home/Home";
 import LoginLayout from "../Layout/LoginLayout";
 import SignupLayout from "../Layout/SignupLayout";
 import SingleCollegePage from "../Pages/SingleCollegePage/SingleCollegePage";
+import Colleges from "../Pages/Colleges/Colleges";
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
     path: "/:id",
     element: <SingleCollegePage></SingleCollegePage>,
     loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+  },
+  {
+    path: "/colleges",
+    element: <Colleges></Colleges>,
   },
 ]);

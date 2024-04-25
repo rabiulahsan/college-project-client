@@ -29,11 +29,9 @@ const SingleCollegecard = ({ clg }) => {
       </p>
       <p className="font-bold mt-3 mb-7">Admission date: {admission_date}</p>
 
-      <Link to={`/${_id}`}>
-        <button className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600">
-          Deatails
-        </button>
-      </Link>
+      <button className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600">
+        <Link to={`/${_id}`}>Deatails</Link>
+      </button>
     </div>
   );
 };
