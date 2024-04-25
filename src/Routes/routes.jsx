@@ -10,6 +10,7 @@ import AdmissionPage from "../Pages/AdmissionPage/AdmissionPage";
 import MyColleges from "../Pages/MyColleges/MyColleges";
 import CollegeFormPage from "../Pages/AdmissionPage/CollegeFormPage";
 import Profile from "../Pages/Profile/Profile";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -33,13 +34,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "/:id",
-        element: <SingleCollegePage></SingleCollegePage>,
-        loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+
+        element: (
+          <PrivateRoutes>
+            <SingleCollegePage></SingleCollegePage>,
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/admission/:id",
-        element: <CollegeFormPage></CollegeFormPage>,
-        loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+        element: (
+          <PrivateRoutes>
+            <CollegeFormPage></CollegeFormPage>,
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/colleges",
@@ -55,7 +63,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: (
+          <PrivateRoutes>
+            <Profile></Profile>,
+          </PrivateRoutes>
+        ),
       },
     ],
   },
