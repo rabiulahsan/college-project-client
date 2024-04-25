@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 
 const Navbar = () => {
@@ -28,7 +29,9 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="">
-            <button className="green-btn">Log in</button>
+            <Link to="/login">
+              <button className="green-btn">Log in</button>
+            </Link>
           </div>
         </div>
       </div>
