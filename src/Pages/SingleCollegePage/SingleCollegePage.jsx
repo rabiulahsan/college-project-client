@@ -5,7 +5,7 @@ import PageBanner from "../../Components/PageBanner/PageBanner";
 import UseAllColleges from "../../Hook/UseAllColleges";
 
 const SingleCollegePage = () => {
-  const [colleges, isLoading] = UseAllColleges();
+  const [colleges] = UseAllColleges();
   const param = useParams();
   console.log(param.id);
 
