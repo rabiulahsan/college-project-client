@@ -1,6 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import FadeAnimations from "../../../Shared/FadeAnimations/FadeAnimations";
+import FadeAnimations from "../../../Components/Animations/FadeAnimations";
 
 const About = () => {
   return (
