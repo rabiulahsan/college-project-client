@@ -49,7 +49,7 @@ const CollegeFormPage = () => {
       email: user?.email,
     };
     console.log(newBlog);
-    fetch(`https://toy-shop-server-xi.vercel.app/`, {
+    fetch(`http://localhost:5000/`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,6 +1,15 @@
+import { Player } from "@lottiefiles/react-lottie-player";
+
 const Errorpage = () => {
   return (
-    <div className="text-4xl text-red-700 text-center">this is error page</div>
+    <div className="flex justify-center items-center h-screen">
+      <div className="">
+        <Player className="h-[350px] " autoplay loop src="/error.json"></Player>
+        <p className="text-5xl font-extrabold text-orange-500 text-center">
+          404 Page Not Found
+        </p>
+      </div>
+    </div>
   );
 };
 

@@ -29,18 +29,14 @@ const About = () => {
             delay={0.3}
             duration={0.5}
           >
-            Welcome to Explorer, where the joy of travel meets the ease of
-            discovery! We are your go-to guide for amazing destinations and
-            unforgettable experiences. <br /> At Explorer, we are all about the
-            thrill of exploration. Our blog is a curated collection of travel
-            stories, stunning visuals, and practical tips. Whether you are a
-            seasoned globetrotter or a first-time traveler, our goal is to
-            inspire and guide you. We believe in the power of travel to
-            transform, create connections, and make lasting memories. <br />{" "}
-            What makes Explorer special? Our commitment to authenticity and
-            quality. Each post is a crafted journey, bringing you closer to the
-            heart of each destination. Our team works hard to provide valuable
-            insights and immersive experiences.
+            FindEdu is your ultimate destination for discovering and securing
+            admission to your dream colleges. With a comprehensive database of
+            colleges, it offers students a platform to explore various
+            educational institutions based on their preferences and
+            requirements. From prestigious universities to specialized colleges,
+            FindEdu provides detailed information and resources to help students
+            make informed decisions and navigate the admission process
+            seamlessly. Discover your educational path with FindEdu today!
           </FadeAnimations>
         </div>
       </div>
