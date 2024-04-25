@@ -44,17 +44,17 @@ const CollegeFormPage = () => {
   });
 
   const onSubmit = (data) => {
-    const newBlog = {
+    const newCollege = {
       ...data,
       email: user?.email,
     };
-    console.log(newBlog);
+    console.log(newCollege);
     fetch(`http://localhost:5000/`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newBlog),
+      body: JSON.stringify(newCollege),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -75,86 +75,52 @@ const CollegeFormPage = () => {
       <div className="mx-[8%] mb-[6%]">
         <form onSubmit={handleSubmit(onSubmit)} className="relative">
           <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-            {/* place name  */}
+            {/* name  */}
             <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Place Name</span>
+                <span className="label-text font-semibold">Name</span>
               </label>
               <input
                 type="text"
-                placeholder="Place Name"
-                {...register("placeName", { required: true, maxLength: 25 })}
+                placeholder="Name"
+                {...register("std_name", { required: true, maxLength: 25 })}
                 className="input-style"
               />
-              {errors.class_name && (
-                <span className="text-red-600">Class Name is required</span>
+              {errors.std_name && (
+                <span className="text-red-600">Student Name is required</span>
               )}
             </div>
 
-            {/* writer  */}
+            {/* email  */}
             <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Writer</span>
-              </label>
-              <input
-                readOnly
-                type="text"
-                value={user?.displayName}
-                {...register("writer", { required: true, maxLength: 120 })}
-                className="input-style"
-              />
-            </div>
-
-            {/* location  */}
-            <div className="form-control w-full mb-4">
-              <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Location</span>
+                <span className="label-text font-semibold">Email</span>
               </label>
               <input
                 type="text"
-                placeholder="Location"
-                {...register("location", { required: true, maxLength: 30 })}
+                placeholder="Email"
+                {...register("std_email", { required: true, maxLength: 25 })}
                 className="input-style"
               />
-              {errors.location && (
-                <span className="text-red-600">Location is required</span>
+              {errors.std_email && (
+                <span className="text-red-600">Email is required</span>
               )}
             </div>
 
-            {/* category */}
-            <div className="form-control w-full max-w-xs">
+            {/* subject  */}
+            <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">
-                  Select Category
-                </span>
+                <span className="label-text font-semibold">Subject</span>
               </label>
-              <div className="input-group">
-                <select
-                  {...register("category", { required: true })}
-                  className="select select-bordered text-black"
-                >
-                  <option selected value="">
-                    Select Category
-                  </option>
-                  <option value="hike">Hike</option>
-                  <option value="national-park">National Park</option>
-                  <option value="village">Village</option>
-                  <option value="city">City</option>
-                  <option value="lake">Lake</option>
-                  <option value="forest">Forest</option>
-                  <option value="beach">Beach</option>
-                  <option value="gracier">Gracier</option>
-                  <option value="canyon">Canyon</option>
-                  <option value="monument">Monument</option>
-                  <option value="waterfall">Waterfall</option>
-                  <option value="mountain">Mountain</option>
-                </select>
-                {errors.category && (
-                  <span className="text-red-600 text-sm">
-                    Category need to be selected
-                  </span>
-                )}
-              </div>
+              <input
+                type="text"
+                placeholder="Subject"
+                {...register("subject", { required: true, maxLength: 30 })}
+                className="input-style"
+              />
+              {errors.subject && (
+                <span className="text-red-600">subject is required</span>
+              )}
             </div>
 
             {/* image url  */}
@@ -173,39 +139,41 @@ const CollegeFormPage = () => {
               )}
             </div>
 
-            {/* country  */}
+            {/* phone  */}
             <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Country</span>
+                <span className="label-text font-semibold">Phone</span>
               </label>
               <input
                 type="text"
-                placeholder="Country"
-                {...register("country", { required: true, maxLength: 30 })}
+                placeholder="Phone"
+                {...register("phone", { required: true, maxLength: 30 })}
                 className="input-style"
               />
-              {errors.country && (
-                <span className="text-red-600">Country is required</span>
+              {errors.phone && (
+                <span className="text-red-600">phone is required</span>
               )}
             </div>
+
+            {/* address  */}
             <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Description</span>
+                <span className="label-text font-semibold">Address</span>
               </label>
               <textarea
                 className="textarea textarea-bordered input-style"
-                placeholder="Description"
-                {...register("description", { required: true })}
+                placeholder="Address"
+                {...register("address", { required: true })}
               ></textarea>
-              {errors.description && (
-                <span className="text-red-600">Description is required</span>
+              {errors.address && (
+                <span className="text-red-600">address is required</span>
               )}
             </div>
           </div>
           <input
-            className="orange-small-btn cursor-pointer font-bold absolute bottom-0 right-0"
+            className="green-small-btn cursor-pointer font-bold absolute bottom-0 right-0"
             type="submit"
-            value="Add Blog"
+            value="Submit"
           />
         </form>
       </div>

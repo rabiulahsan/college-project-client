@@ -21,42 +21,42 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+      {
+        path: "/login",
+        element: <LoginLayout></LoginLayout>,
+        errorElement: <Errorpage></Errorpage>,
+      },
+      {
+        path: "/signup",
+        element: <SignupLayout></SignupLayout>,
+        errorElement: <Errorpage></Errorpage>,
+      },
+      {
+        path: "/:id",
+        element: <SingleCollegePage></SingleCollegePage>,
+        loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+      },
+      {
+        path: "/admission/:id",
+        element: <CollegeFormPage></CollegeFormPage>,
+        loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+      },
+      {
+        path: "/colleges",
+        element: <Colleges></Colleges>,
+      },
+      {
+        path: "/admission",
+        element: <AdmissionPage></AdmissionPage>,
+      },
+      {
+        path: "/mycolleges",
+        element: <MyColleges></MyColleges>,
+      },
+      {
+        path: "/profile",
+        element: <Profile></Profile>,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <LoginLayout></LoginLayout>,
-    errorElement: <Errorpage></Errorpage>,
-  },
-  {
-    path: "/signup",
-    element: <SignupLayout></SignupLayout>,
-    errorElement: <Errorpage></Errorpage>,
-  },
-  {
-    path: "/:id",
-    element: <SingleCollegePage></SingleCollegePage>,
-    loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
-  },
-  {
-    path: "/admission/:id",
-    element: <CollegeFormPage></CollegeFormPage>,
-    loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
-  },
-  {
-    path: "/colleges",
-    element: <Colleges></Colleges>,
-  },
-  {
-    path: "/admission",
-    element: <AdmissionPage></AdmissionPage>,
-  },
-  {
-    path: "/mycolleges",
-    element: <MyColleges></MyColleges>,
-  },
-  {
-    path: "/profile",
-    element: <Profile></Profile>,
   },
 ]);
