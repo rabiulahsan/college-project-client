@@ -10,7 +10,7 @@ const SingleCollegecard = ({ clg }) => {
     annual_sports,
   } = clg;
   return (
-    <div className="flex flex-col bg-white p-4 rounded-md hover:scale-110 duration-500 border border-gray-400 ">
+    <div className="flex flex-col bg-white p-4 rounded-md hover:scale-105 duration-500 border border-gray-400 ">
       <img
         className=" mx-auto w-[300px] h-[220px] rounded-md"
         src={image}
