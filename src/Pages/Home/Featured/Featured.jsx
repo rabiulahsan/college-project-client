@@ -13,7 +13,7 @@ const Featured = () => {
   }, []);
 
   const featuredColleges = colleges.slice(0, 3);
-  console.log(featuredColleges);
+
   return (
     <div className="">
       <SectionTitle heading="Explore our Featured Colleges"></SectionTitle>
