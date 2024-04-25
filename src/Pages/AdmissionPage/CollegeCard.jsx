@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import FadeAnimations from "../../../Components/Animations/FadeAnimations";
-const SingleCollegecard = ({ clg }) => {
+import FadeAnimations from "../../Components/Animations/FadeAnimations";
+const CollegeCard = ({ clg }) => {
   const {
     _id,
     name,
@@ -32,11 +32,11 @@ const SingleCollegecard = ({ clg }) => {
         <p className="font-bold mt-3 mb-7">Admission date: {admission_date}</p>
 
         <button className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600">
-          <Link to={`/${_id}`}>Details</Link>
+          <Link to={`/admission/${_id}`}>Admission</Link>
         </button>
       </div>
     </FadeAnimations>
   );
 };
 
-export default SingleCollegecard;
+export default CollegeCard;
