@@ -41,11 +41,11 @@ export const router = createBrowserRouter([
     element: <Colleges></Colleges>,
   },
   {
-    path: "/colleges",
+    path: "/admission",
     element: <AdmissionPage></AdmissionPage>,
   },
   {
-    path: "/colleges",
+    path: "/mycolleges",
     element: <MyColleges></MyColleges>,
   },
 ]);
