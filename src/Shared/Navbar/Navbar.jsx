@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="">
-        <div className="flex  justify-between items-center px-[8%] py-[1%] bg-white sticky top-0 z-10 ">
+        <div className="flex  justify-between items-center px-[8%] py-[1%] bg-white fixed  w-full top-0 z-10 ">
           <ActiveLink to="/">
             <p className=" font-bold text-3xl">
               <span className="text-black">Find</span>
