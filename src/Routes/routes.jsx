@@ -12,6 +12,7 @@ import CollegeFormPage from "../Pages/AdmissionPage/CollegeFormPage";
 import Profile from "../Pages/Profile/Profile";
 import PrivateRoutes from "./PrivateRoutes";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
+import SearchPage from "../Pages/SearchPage/SearchPage";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
             <UpdateProfile></UpdateProfile>,
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/search/:value",
+        element: <SearchPage></SearchPage>,
       },
     ],
   },
