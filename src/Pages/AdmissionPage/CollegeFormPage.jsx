@@ -58,24 +58,23 @@ const CollegeFormPage = () => {
     };
     console.log(newCollege);
 
-    //todo here will be update . here you update the user
-    // fetch(`http://localhost:5000/`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(newCollege),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.data.insertedId) {
-    //       reset();
-    //       Toast.fire({
-    //         icon: "success",
-    //         title: "New blogs create successfully",
-    //       });
-    //     }
-    //   });
+    fetch(`http://localhost:5000/users`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCollege),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data.insertedId) {
+          reset();
+          Toast.fire({
+            icon: "success",
+            title: "Admitted successfully",
+          });
+        }
+      });
   };
   return (
     <div>

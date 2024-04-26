@@ -19,6 +19,7 @@ const Sign = () => {
 
   const onSubmit = (data) => {
     // confirm password condition
+
     if (data.password === data.confirmPassword) {
       createUser(data.email, data.password).then((result) => {
         const loggedUser = result.user;
@@ -28,9 +29,8 @@ const Sign = () => {
             const saveUser = {
               name: data.name,
               email: data.email,
-              role: "user",
             };
-            fetch("http://localhost:5000/colleges/users", {
+            fetch("http://localhost:5000/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
