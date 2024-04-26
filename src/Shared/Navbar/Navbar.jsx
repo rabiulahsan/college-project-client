@@ -26,7 +26,7 @@ const Navbar = () => {
                 <ActiveLink to="/admission">Admission</ActiveLink>
               </li>
               <li className="mx-2 px-2 navlink-hover">
-                <ActiveLink to="/mycolleges">My Colleges</ActiveLink>
+                <ActiveLink to="/mycolleges">My College</ActiveLink>
               </li>
             </ul>
           </div>

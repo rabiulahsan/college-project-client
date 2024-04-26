@@ -50,6 +50,7 @@ const CollegeFormPage = () => {
   const onSubmit = (data) => {
     const newCollege = {
       ...data,
+      user_id: user?._id,
       email: user?.email,
       dateOfBirth: startDate,
       college_name: loadedData[0]?.name,
@@ -57,7 +58,7 @@ const CollegeFormPage = () => {
     };
     console.log(newCollege);
 
-    //todo
+    //todo here will be update . here you update the user
     // fetch(`http://localhost:5000/`, {
     //   method: "POST",
     //   headers: {
@@ -90,7 +91,7 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Name</span>
               </label>
               <input
-                readOnly
+                // readOnly
                 type="text"
                 placeholder="Name"
                 value={user?.displayName}
@@ -105,7 +106,7 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Email</span>
               </label>
               <input
-                readOnly
+                // readOnly
                 type="text"
                 placeholder="Email"
                 value={user?.email}

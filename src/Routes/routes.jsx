@@ -11,6 +11,7 @@ import MyColleges from "../Pages/MyColleges/MyColleges";
 import CollegeFormPage from "../Pages/AdmissionPage/CollegeFormPage";
 import Profile from "../Pages/Profile/Profile";
 import PrivateRoutes from "./PrivateRoutes";
+import UpdateProfile from "../Pages/Profile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Profile></Profile>,
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/update-profile",
+        element: (
+          <PrivateRoutes>
+            <UpdateProfile></UpdateProfile>,
           </PrivateRoutes>
         ),
       },
