@@ -1,6 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import FadeAnimations from "../../../Components/Animations/FadeAnimations";
 import slide3 from "../../../assets/banner(1).png";
+import { useState } from "react";
 const Header = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+
+  //if searchvalue is empty then return nothing
+  const handleSearch = () => {
+    if (searchValue) {
+      navigate(`/search/${searchValue}`);
+    } else {
+      return;
+    }
+  };
   return (
     <div>
       <div className="flex gap-x-10 px-[8%] flex-col-reverse lg:flex-row items-center lg:justify-start ">
@@ -26,8 +39,13 @@ const Header = () => {
                 className="py-2 px-4 w-[400px] focus:outline-none border border-gray-400"
                 type="text "
                 placeholder="Search your Favourite Colleges"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
               ></input>
-              <button className="green-btn hover:bg-green-800 ml-5">
+              <button
+                className="green-btn hover:bg-green-800 ml-5"
+                onClick={handleSearch}
+              >
                 Search
               </button>
             </div>
