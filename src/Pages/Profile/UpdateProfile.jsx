@@ -109,7 +109,7 @@ const UpdateProfile = () => {
                 type="text"
                 placeholder="Email"
                 value={user?.email}
-                {...register("std_email", { required: true, maxLength: 25 })}
+                {...register("email", { required: true, maxLength: 25 })}
                 className="input-style"
               />
             </div>
@@ -121,8 +121,8 @@ const UpdateProfile = () => {
               </label>
               <input
                 type="text"
-                placeholder="College"
-                {...register("college", { required: true, maxLength: 40 })}
+                placeholder="College Name"
+                {...register("college_name", { required: true, maxLength: 40 })}
                 className="input-style"
               />
               {errors.college && (
