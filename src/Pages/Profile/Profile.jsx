@@ -17,31 +17,69 @@ const Profile = () => {
           alt=""
         />
       </div>
-      <div className="">
-        <div className=" flex justify-between items-center mx-[20%] mb-[3%] gap-x-[10%]">
-          <div className="w-1/2 border-red-400 border-2">
+      <div className=" ">
+        <div className=" flex justify-around items-center   mb-[3%] gap-x-[10%] ">
+          <div className="w-1/2 ">
             <FadeAnimations
               direction="right"
               once={false}
               delay={0.3}
               duration={0.5}
             >
-              <p>j</p>
+              <div className="">
+                <p className="text-sm text-gray-500 font-semibold ">Name</p>
+                <p className=" text-lg font-bold">{user?.displayName}</p>
+              </div>
+              <div className="my-[7%]">
+                <p className="text-sm text-gray-500 font-semibold mb-1">
+                  College Name
+                </p>
+                <p className=" text-lg font-bold">
+                  {user?.college ? user?.college : " Not Given"}
+                </p>
+              </div>
+              <div className="">
+                <p className="text-sm text-gray-500 font-semibold mb-1">
+                  Phone no
+                </p>
+                <p className=" text-lg font-bold">
+                  {user?.phone ? user?.phone : " Not Given"}
+                </p>
+              </div>
             </FadeAnimations>
           </div>
-          <div className="w-1/2  border-red-400 border-2">
+          <div className="w-1/2  ">
             <FadeAnimations
               direction="left"
               once={false}
               delay={0.3}
               duration={0.5}
             >
-              <p>h</p>
+              <div className="">
+                <p className="text-sm text-gray-500 font-semibold ">Email</p>
+                <p className=" text-lg font-bold">{user?.email}</p>
+              </div>
+              <div className="my-[7%]">
+                <p className="text-sm text-gray-500 font-semibold mb-1">
+                  Subject Name
+                </p>
+                <p className=" text-lg font-bold">
+                  {user?.subject ? user?.subject : " Not Given"}
+                </p>
+              </div>
+              <div className="">
+                <p className="text-sm text-gray-500 font-semibold mb-1">
+                  Address
+                </p>
+                <p className=" text-lg font-bold">
+                  {user?.address ? user?.address : " Not Given"}
+                </p>
+              </div>
             </FadeAnimations>
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mb-[3%]">
         <button className="green-small-btn cursor-pointer font-bold ">
           <Link to="/update-profile">Edit</Link>
         </button>
