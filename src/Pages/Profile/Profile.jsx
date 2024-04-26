@@ -17,9 +17,9 @@ const Profile = () => {
           alt=""
         />
       </div>
-      <div className=" ">
-        <div className=" flex justify-around items-center   mb-[3%] gap-x-[10%] ">
-          <div className="w-1/2 ">
+      <div className="">
+        <div className=" flex justify-around items-center mb-[3%] mx-[15%]">
+          <div className="">
             <FadeAnimations
               direction="right"
               once={false}
@@ -30,7 +30,7 @@ const Profile = () => {
                 <p className="text-sm text-gray-500 font-semibold ">Name</p>
                 <p className=" text-lg font-bold">{user?.displayName}</p>
               </div>
-              <div className="my-[7%]">
+              <div className="my-7">
                 <p className="text-sm text-gray-500 font-semibold mb-1">
                   College Name
                 </p>
@@ -48,7 +48,7 @@ const Profile = () => {
               </div>
             </FadeAnimations>
           </div>
-          <div className="w-1/2  ">
+          <div className="">
             <FadeAnimations
               direction="left"
               once={false}
@@ -59,7 +59,7 @@ const Profile = () => {
                 <p className="text-sm text-gray-500 font-semibold ">Email</p>
                 <p className=" text-lg font-bold">{user?.email}</p>
               </div>
-              <div className="my-[7%]">
+              <div className="my-7">
                 <p className="text-sm text-gray-500 font-semibold mb-1">
                   Subject Name
                 </p>
