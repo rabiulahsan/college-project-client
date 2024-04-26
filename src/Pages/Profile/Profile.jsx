@@ -1,12 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import FadeAnimations from "../../Components/Animations/FadeAnimations";
 import UseAuth from "../../Hook/UseAuth";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 
 const Profile = () => {
-  const { user } = UseAuth();
+  const { user, logOut } = UseAuth();
   console.log(user);
+
+  // functon for logout
+  const handleLogOut = () => {
+    logOut()
+      .then(Navigate("/"))
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -79,9 +86,15 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center mb-[3%]">
+      <div className="flex justify-center items-center mb-[3%] gap-x-5">
         <button className="green-small-btn cursor-pointer font-bold ">
           <Link to="/update-profile">Edit</Link>
+        </button>
+        <button
+          className="green-small-btn cursor-pointer font-bold "
+          onClick={handleLogOut}
+        >
+          Logout
         </button>
       </div>
       <Footer></Footer>

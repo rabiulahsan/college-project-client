@@ -3,7 +3,7 @@ import slide3 from "../../../assets/banner(1).png";
 const Header = () => {
   return (
     <div>
-      <div className="flex gap-x-10 px-[8%] flex-col-reverse lg:flex-row items-center lg:justify-start mt-[5%]">
+      <div className="flex gap-x-10 px-[8%] flex-col-reverse lg:flex-row items-center lg:justify-start ">
         <div className="w-full text-center lg:text-left lg:w-1/2">
           <FadeAnimations
             direction="right"
