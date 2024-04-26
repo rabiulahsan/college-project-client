@@ -34,7 +34,7 @@ const Profile = () => {
       <Navbar></Navbar>
       <div className="mt-[5%] mb-[3%]">
         <img
-          src={user?.photoURL}
+          src={user?.photoURL ? user?.photoURL : "/icon.png"}
           className="h-[120px] w-[120px] rounded-full mx-auto"
           alt=""
         />

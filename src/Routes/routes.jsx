@@ -56,11 +56,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/admission",
-        element: <AdmissionPage></AdmissionPage>,
+        element: (
+          <PrivateRoutes>
+            <AdmissionPage></AdmissionPage>,
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/mycolleges",
-        element: <MyColleges></MyColleges>,
+        element: (
+          <PrivateRoutes>
+            <MyColleges></MyColleges>,
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/profile",
