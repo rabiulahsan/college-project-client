@@ -5,8 +5,23 @@ import UseAuth from "../../Hook/UseAuth";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 const UpdateProfile = () => {
+  const [users, setUsers] = useState([]);
+  const { user } = UseAuth();
+  useEffect(() => {
+    fetch("http://localhost:5000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const loggedUser = users.filter((u) => u.email == user?.email);
+  console.log(loggedUser[0]);
+
   const details = {
     image:
       "https://brand.cornell.edu/assets/images/photography/UP_2017_1304_147_select.jpg",
@@ -19,8 +34,6 @@ const UpdateProfile = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  const { user } = UseAuth();
 
   // for swal notification
   const Toast = Swal.mixin({
@@ -43,7 +56,7 @@ const UpdateProfile = () => {
     };
     console.log(newCollege);
 
-    fetch(`http://localhost:5000/users`, {
+    fetch(`http://localhost:5000/users/${loggedUser[0]?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -75,7 +88,6 @@ const UpdateProfile = () => {
                 <span className="label-text font-semibold">Name</span>
               </label>
               <input
-                // readOnly
                 type="text"
                 placeholder="Name"
                 value={user?.displayName}
@@ -90,7 +102,7 @@ const UpdateProfile = () => {
                 <span className="label-text font-semibold">Email</span>
               </label>
               <input
-                // readOnly
+                readOnly
                 type="text"
                 placeholder="Email"
                 value={user?.email}

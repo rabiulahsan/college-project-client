@@ -9,13 +9,25 @@ import { useParams } from "react-router-dom";
 import UseAllColleges from "../../Hook/UseAllColleges";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CollegeFormPage = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [colleges] = UseAllColleges();
   const param = useParams();
-  // console.log(param.id);
+
+  const [users, setUsers] = useState([]);
+  const { user } = UseAuth();
+  useEffect(() => {
+    fetch("http://localhost:5000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const loggedUser = users.filter((u) => u.email == user?.email);
 
   const loadedData = colleges.filter((clg) => clg._id === param.id);
   console.log(loadedData);
@@ -31,8 +43,6 @@ const CollegeFormPage = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  const { user } = UseAuth();
 
   // for swal notification
   const Toast = Swal.mixin({
@@ -58,7 +68,7 @@ const CollegeFormPage = () => {
     };
     console.log(newCollege);
 
-    fetch(`http://localhost:5000/users`, {
+    fetch(`http://localhost:5000/users/${loggedUser[0]?.id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -90,7 +100,7 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Name</span>
               </label>
               <input
-                // readOnly
+                readOnly
                 type="text"
                 placeholder="Name"
                 value={user?.displayName}
@@ -105,7 +115,7 @@ const CollegeFormPage = () => {
                 <span className="label-text font-semibold">Email</span>
               </label>
               <input
-                // readOnly
+                readOnly
                 type="text"
                 placeholder="Email"
                 value={user?.email}

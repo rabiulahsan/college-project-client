@@ -6,7 +6,7 @@ import Navbar from "../../Shared/Navbar/Navbar";
 
 const Profile = () => {
   const { user, logOut } = UseAuth();
-  console.log(user);
+  // console.log(user);
 
   // functon for logout
   const handleLogOut = () => {
