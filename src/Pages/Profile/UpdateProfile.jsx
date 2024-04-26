@@ -89,11 +89,14 @@ const UpdateProfile = () => {
               </label>
               <input
                 type="text"
+                defaultValue={user?.displayName}
                 placeholder="Name"
-                value={user?.displayName}
-                {...register("std_name", { required: true, maxLength: 25 })}
+                {...register("name", { required: true, maxLength: 40 })}
                 className="input-style"
               />
+              {errors.name && (
+                <span className="text-red-600">Name is required</span>
+              )}
             </div>
 
             {/* email  */}

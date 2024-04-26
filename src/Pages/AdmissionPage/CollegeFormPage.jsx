@@ -5,7 +5,7 @@ import Navbar from "../../Shared/Navbar/Navbar";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import PageBanner from "../../Components/PageBanner/PageBanner";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UseAllColleges from "../../Hook/UseAllColleges";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,9 +15,10 @@ const CollegeFormPage = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [colleges] = UseAllColleges();
   const param = useParams();
-
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const { user } = UseAuth();
+  // console.log(user);
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((response) => response.json())
@@ -30,7 +31,7 @@ const CollegeFormPage = () => {
   const loggedUser = users.filter((u) => u.email == user?.email);
 
   const loadedData = colleges.filter((clg) => clg._id === param.id);
-  console.log(loadedData);
+  // console.log(loadedData);
   //create object for pagebanner section
   const details = {
     image: loadedData[0]?.image,
@@ -58,27 +59,28 @@ const CollegeFormPage = () => {
   });
 
   const onSubmit = (data) => {
-    const newCollege = {
+    const userBody = {
       ...data,
-      user_id: user?._id,
-      email: user?.email,
-      dateOfBirth: startDate,
+      photoURL: user?.photoURL,
+      dob: startDate,
       college_name: loadedData[0]?.name,
       college_id: param.id,
     };
-    console.log(newCollege);
+    console.log(userBody);
 
-    fetch(`http://localhost:5000/users/${loggedUser[0]?.id}`, {
+    fetch(`http://localhost:5000/users/${loggedUser[0]?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newCollege),
+      body: JSON.stringify(userBody),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.data.insertedId) {
+        console.log(data);
+        if (data.modifiedCount == 1) {
           reset();
+          navigate("/mycolleges");
           Toast.fire({
             icon: "success",
             title: "Admitted successfully",
@@ -104,7 +106,7 @@ const CollegeFormPage = () => {
                 type="text"
                 placeholder="Name"
                 value={user?.displayName}
-                {...register("std_name", { required: true, maxLength: 25 })}
+                {...register("name", { required: true, maxLength: 25 })}
                 className="input-style"
               />
             </div>
@@ -119,7 +121,7 @@ const CollegeFormPage = () => {
                 type="text"
                 placeholder="Email"
                 value={user?.email}
-                {...register("std_email", { required: true, maxLength: 25 })}
+                {...register("email", { required: true, maxLength: 25 })}
                 className="input-style"
               />
             </div>
