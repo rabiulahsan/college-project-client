@@ -1,17 +1,32 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FadeAnimations from "../../Components/Animations/FadeAnimations";
 import UseAuth from "../../Hook/UseAuth";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
+  const [users, setUsers] = useState([]);
   const { user, logOut } = UseAuth();
   // console.log(user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const loggedUser = users.filter((u) => u.email == user?.email);
+  console.log(loggedUser[0]);
 
   // functon for logout
   const handleLogOut = () => {
     logOut()
-      .then(Navigate("/"))
+      .then(navigate("/"))
       .catch((error) => console.log(error));
   };
   return (
@@ -35,14 +50,16 @@ const Profile = () => {
             >
               <div className="">
                 <p className="text-sm text-gray-500 font-semibold ">Name</p>
-                <p className=" text-lg font-bold">{user?.displayName}</p>
+                <p className=" text-lg font-bold">{loggedUser[0]?.name}</p>
               </div>
               <div className="my-7">
                 <p className="text-sm text-gray-500 font-semibold mb-1">
                   College Name
                 </p>
                 <p className=" text-lg font-bold">
-                  {user?.college ? user?.college : " Not Given"}
+                  {loggedUser[0]?.college_name
+                    ? loggedUser[0]?.college_name
+                    : " Not Given"}
                 </p>
               </div>
               <div className="">
@@ -50,7 +67,7 @@ const Profile = () => {
                   Phone no
                 </p>
                 <p className=" text-lg font-bold">
-                  {user?.phone ? user?.phone : " Not Given"}
+                  {loggedUser[0]?.phone ? loggedUser[0]?.phone : " Not Given"}
                 </p>
               </div>
             </FadeAnimations>
@@ -71,7 +88,9 @@ const Profile = () => {
                   Subject Name
                 </p>
                 <p className=" text-lg font-bold">
-                  {user?.subject ? user?.subject : " Not Given"}
+                  {loggedUser[0]?.subject
+                    ? loggedUser[0]?.subject
+                    : " Not Given"}
                 </p>
               </div>
               <div className="">
@@ -79,7 +98,9 @@ const Profile = () => {
                   Address
                 </p>
                 <p className=" text-lg font-bold">
-                  {user?.address ? user?.address : " Not Given"}
+                  {loggedUser[0]?.address
+                    ? loggedUser[0]?.address
+                    : " Not Given"}
                 </p>
               </div>
             </FadeAnimations>

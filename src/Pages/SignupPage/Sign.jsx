@@ -29,6 +29,7 @@ const Sign = () => {
             const saveUser = {
               name: data.name,
               email: data.email,
+              admitted: false,
             };
             fetch("http://localhost:5000/users", {
               method: "POST",
@@ -39,6 +40,7 @@ const Sign = () => {
             })
               .then((res) => res.json())
               .then((data) => {
+                console.log(data);
                 if (data.insertedId) {
                   reset();
                   Swal.fire({

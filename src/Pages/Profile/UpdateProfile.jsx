@@ -6,10 +6,12 @@ import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UpdateProfile = () => {
   const [users, setUsers] = useState([]);
   const { user } = UseAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((response) => response.json())
@@ -20,7 +22,9 @@ const UpdateProfile = () => {
   }, []);
 
   const loggedUser = users.filter((u) => u.email == user?.email);
-  console.log(loggedUser[0]);
+  // console.log(loggedUser[0]);
+  const admitted = loggedUser[0]?.admitted;
+  console.log(admitted);
 
   const details = {
     image:
@@ -49,24 +53,23 @@ const UpdateProfile = () => {
   });
 
   const onSubmit = (data) => {
-    const newCollege = {
+    const userBody = {
       ...data,
-      user_id: user?._id,
-      email: user?.email,
     };
-    console.log(newCollege);
+    console.log(userBody);
 
     fetch(`http://localhost:5000/users/${loggedUser[0]?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newCollege),
+      body: JSON.stringify(userBody),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.data.insertedId) {
+        if (data.modifiedCount == 1) {
           reset();
+          navigate("/profile");
           Toast.fire({
             icon: "success",
             title: "Profile update successfully",
@@ -89,7 +92,7 @@ const UpdateProfile = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.displayName}
+                defaultValue={loggedUser[0]?.name}
                 placeholder="Name"
                 {...register("name", { required: true, maxLength: 40 })}
                 className="input-style"
@@ -114,35 +117,30 @@ const UpdateProfile = () => {
               />
             </div>
 
-            {/* Colooege  */}
+            {/* College  */}
             <div className="form-control w-full mb-4">
               <label className="label block text-gray-700 text-sm font-bold">
                 <span className="label-text font-semibold">College</span>
               </label>
-              <input
-                type="text"
-                placeholder="College Name"
-                {...register("college_name", { required: true, maxLength: 40 })}
-                className="input-style"
-              />
+              {admitted ? (
+                <input
+                  type="text"
+                  placeholder="College Name"
+                  defaultValue={loggedUser[0]?.college_name}
+                  {...register("college_name", {
+                    required: true,
+                    maxLength: 40,
+                  })}
+                  className="input-style"
+                />
+              ) : (
+                <p className="font-semibold text-lg text-green-500">
+                  At first you have to admit a college
+                </p>
+              )}
+
               {errors.college && (
                 <span className="text-red-600">College is required</span>
-              )}
-            </div>
-
-            {/* subject  */}
-            <div className="form-control w-full mb-4">
-              <label className="label block text-gray-700 text-sm font-bold">
-                <span className="label-text font-semibold">Subject</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Subject"
-                {...register("subject", { required: true, maxLength: 30 })}
-                className="input-style"
-              />
-              {errors.subject && (
-                <span className="text-red-600">subject is required</span>
               )}
             </div>
 
@@ -153,6 +151,7 @@ const UpdateProfile = () => {
               </label>
               <input
                 type="text"
+                defaultValue={loggedUser[0]?.phone}
                 placeholder="Phone"
                 {...register("phone", { required: true, maxLength: 30 })}
                 className="input-style"
@@ -170,6 +169,7 @@ const UpdateProfile = () => {
               <textarea
                 className="textarea textarea-bordered input-style"
                 placeholder="Address"
+                defaultValue={loggedUser[0]?.address}
                 {...register("address", { required: true })}
               ></textarea>
               {errors.address && (

@@ -65,6 +65,7 @@ const CollegeFormPage = () => {
       dob: startDate,
       college_name: loadedData[0]?.name,
       college_id: param.id,
+      admitted: true,
     };
     console.log(userBody);
 
