@@ -51,7 +51,7 @@ const SearchPage = () => {
         </>
       )}
       {searchresult.length === 0 ? (
-        <div className="pt-[10%] mb-[5%]">
+        <div className="pt-[7%] mb-[5%]">
           <FadeAnimations
             direction="down"
             once={false}
