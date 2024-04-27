@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../../Hook/UseAuth";
 import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
+import { useState } from "react";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -19,19 +21,23 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onsubmit = (data) => {
-    signIn(data.email, data.password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      reset();
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User Login Successfully",
-        showConfirmButton: false,
-        timer: 1500,
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Login Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message); // Set error message in state
       });
-      navigate(from, { replace: true });
-    });
   };
 
   return (
@@ -69,6 +75,8 @@ const Login = () => {
                 <span className="text-red-600">Password required</span>
               )}
             </div>
+            {/* for error  */}
+            <p className="text-red-600 text-xl font-semibold">{error}</p>
 
             <div className="form-control cursor-pointer text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               <input className=" cursor-pointer " type="submit" value="Login" />
