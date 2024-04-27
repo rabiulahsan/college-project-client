@@ -3,9 +3,23 @@ import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import Swal from "sweetalert2";
 import UseAuth from "../../Hook/UseAuth";
+import { useEffect, useState } from "react";
 
 const MyColleges = () => {
+  const [reviews, setreviews] = useState([]);
   const { user } = UseAuth();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/reviews")
+      .then((response) => response.json())
+      .then((data) => {
+        setreviews(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const thisRating = reviews.filter((review) => review.email == user?.email);
+  console.log(thisRating);
   const {
     register,
     handleSubmit,
@@ -31,6 +45,7 @@ const MyColleges = () => {
       ...data,
       image: user?.photoURL,
       name: user?.displayName,
+      email: user?.email,
     };
     console.log(reviewBody);
 
@@ -88,11 +103,21 @@ const MyColleges = () => {
                   <option selected value="">
                     Select Rating
                   </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+                  <option selected={thisRating?.rating === "1"} value="1">
+                    1
+                  </option>
+                  <option selected={thisRating?.rating === "2"} value="2">
+                    2
+                  </option>
+                  <option selected={thisRating?.rating === "3"} value="3">
+                    3
+                  </option>
+                  <option selected={thisRating?.rating === "4"} value="4">
+                    4
+                  </option>
+                  <option selected={thisRating?.rating === "5"} value="5">
+                    5
+                  </option>
                 </select>
                 {errors.rating && (
                   <span className="text-red-600 text-sm">
