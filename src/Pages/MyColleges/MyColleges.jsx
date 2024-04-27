@@ -19,7 +19,9 @@ const MyColleges = () => {
   const [colleges, isLoading] = UseAllColleges();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user?.email}`)
+    fetch(
+      `https://college-facilities-server.vercel.app/review?email=${user?.email}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setreview(data);
@@ -30,7 +32,7 @@ const MyColleges = () => {
 
   // console.log(user);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://college-facilities-server.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -73,7 +75,7 @@ const MyColleges = () => {
     };
     // console.log(reviewBody);
 
-    fetch(`http://localhost:5000/reviews`, {
+    fetch(`https://college-facilities-server.vercel.app/reviews`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

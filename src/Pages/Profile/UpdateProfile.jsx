@@ -13,7 +13,7 @@ const UpdateProfile = () => {
   const { user } = UseAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://college-facilities-server.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -58,13 +58,16 @@ const UpdateProfile = () => {
     };
     console.log(userBody);
 
-    fetch(`http://localhost:5000/users/${loggedUser[0]?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userBody),
-    })
+    fetch(
+      `https://college-facilities-server.vercel.app/users/${loggedUser[0]?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userBody),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount == 1) {

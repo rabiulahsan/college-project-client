@@ -5,7 +5,7 @@ const useAdmitted = () => {
   const [users, setUsers] = useState([]);
   const { user } = UseAuth();
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://college-facilities-server.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);

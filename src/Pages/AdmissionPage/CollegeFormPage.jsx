@@ -20,7 +20,7 @@ const CollegeFormPage = () => {
   const { user } = UseAuth();
   // console.log(user);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://college-facilities-server.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -69,13 +69,16 @@ const CollegeFormPage = () => {
     };
     console.log(userBody);
 
-    fetch(`http://localhost:5000/users/${loggedUser[0]?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userBody),
-    })
+    fetch(
+      `https://college-facilities-server.vercel.app/users/${loggedUser[0]?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userBody),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

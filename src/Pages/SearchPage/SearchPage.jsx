@@ -18,7 +18,9 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchSearchData = async () => {
       try {
-        await fetch(`http://localhost:5000/search?value=${searchValue}`)
+        await fetch(
+          `https://college-facilities-server.vercel.app/search?value=${searchValue}`
+        )
           .then((res) => res.json())
           .then((data) => {
             setSearchResult(data);

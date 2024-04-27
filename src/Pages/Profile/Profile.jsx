@@ -12,7 +12,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://college-facilities-server.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
