@@ -48,7 +48,7 @@ const MyColleges = () => {
     console.log(reviewBody);
 
     fetch(`http://localhost:5000/reviews`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },
