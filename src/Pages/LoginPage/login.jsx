@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../../Hook/UseAuth";
 import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GithubSignin from "../../Shared/GithubSignin/GithubSignin";
 
 const Login = () => {
@@ -20,6 +20,13 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+
+  // const handleResetPass = () => {
+  //   console.log(emailRef.current);
+  //   // resetEmail()
+  //   //   .then(() => Swal.fire("Check your email"))
+  //   //   .catch((err) => console.log(err));
+  // };
 
   const onsubmit = (data) => {
     signIn(data.email, data.password)
@@ -83,6 +90,11 @@ const Login = () => {
               <input className=" cursor-pointer " type="submit" value="Login" />
             </div>
           </form>
+
+          {/* forget password button */}
+          <p className=" cursor-pointer  text-blue-500  text-center mt-5 ">
+            <Link to="/reset-password">Forget password?</Link>
+          </p>
           <p className="text-center text-gray-400 my-5">or</p>
           <div className="my-5">
             <GoogleSignin></GoogleSignin>

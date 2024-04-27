@@ -3,7 +3,7 @@ import UseAuth from "../../Hook/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 const GithubSignin = () => {
   const { user, githubLogin } = UseAuth();
-  console.log(user);
+  // console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
 

@@ -91,6 +91,10 @@ export const router = createBrowserRouter([
         path: "/search/:value",
         element: <SearchPage></SearchPage>,
       },
+      {
+        path: "/reset-password",
+        element: <SearchPage></SearchPage>,
+      },
     ],
   },
 ]);
