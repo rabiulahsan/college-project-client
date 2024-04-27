@@ -33,6 +33,56 @@ const SingleCollegePage = () => {
           </p>
         </div>
       </div>
+      <p className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10">
+        <span className="font-bold">Admission Process: </span>
+        {loadedData[0]?.admission_process}
+      </p>
+      <p className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10">
+        <span className="font-bold">Date of Admission </span>
+        {loadedData[0]?.admission_date}
+      </p>
+      <p className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10">
+        <span className="font-bold">Number of research: </span>
+        {loadedData[0]?.research_num}
+      </p>
+      <p className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10">
+        <span className="font-bold">Total Departmens: </span>
+        {loadedData[0]?.num_of_depts}
+      </p>
+      <p className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10">
+        <span className="font-bold">Rating: </span>
+        {loadedData[0]?.rating}
+      </p>
+      <div className="">
+        <p className="px-[12%] w-3/4 text-xl text-center text-gray-600  mx-auto leading-10">
+          <span className="font-bold">Annual Event </span>
+        </p>
+
+        {loadedData[0]?.annual_events.map((ae, idx) => (
+          <p
+            key={idx}
+            className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10"
+          >
+            <span className="font-bold">{ae?.name}: </span>
+            {ae?.description}
+          </p>
+        ))}
+      </div>
+      <div className=" my-[4%]">
+        <p className="px-[12%] w-3/4 text-xl text-center text-gray-600  mx-auto leading-10">
+          <span className="font-bold">Annual Sports </span>
+        </p>
+        {loadedData[0]?.annual_sports.map((se, idx) => (
+          <p
+            key={idx}
+            className="px-[12%] w-3/4 text-lg text-gray-600  mx-auto leading-10"
+          >
+            <span className="font-bold">{se?.name}: </span>
+            {se?.description}
+          </p>
+        ))}
+      </div>
+
       <Footer></Footer>
     </div>
   );
