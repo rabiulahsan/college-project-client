@@ -65,8 +65,8 @@ const Sign = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center bg-[#ebeaf8] h-[710px]">
-        <div className="card bg-white shadow-md rounded px-10 pt-8 pb-8 mb-4 w-1/4">
+      <div className="flex justify-center items-center bg-[#ebeaf8] h-fit ">
+        <div className="card bg-white shadow-md rounded px-10 pt-8 pb-8 mb-4 w-1/4 my-[5%]">
           <form onSubmit={handleSubmit(onSubmit)} className="">
             <div className="form-control">
               <label className="label block text-gray-700 text-sm font-bold">

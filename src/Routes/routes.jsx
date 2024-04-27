@@ -13,6 +13,7 @@ import Profile from "../Pages/Profile/Profile";
 import PrivateRoutes from "./PrivateRoutes";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
 import SearchPage from "../Pages/SearchPage/SearchPage";
+import ResetPage from "../Pages/LoginPage/ResetPage";
 
 export const router = createBrowserRouter([
   {
@@ -93,7 +94,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/reset-password",
-        element: <SearchPage></SearchPage>,
+        element: <ResetPage></ResetPage>,
       },
     ],
   },

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../../Hook/UseAuth";
 import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import GithubSignin from "../../Shared/GithubSignin/GithubSignin";
 
 const Login = () => {
@@ -20,13 +20,6 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-
-  // const handleResetPass = () => {
-  //   console.log(emailRef.current);
-  //   // resetEmail()
-  //   //   .then(() => Swal.fire("Check your email"))
-  //   //   .catch((err) => console.log(err));
-  // };
 
   const onsubmit = (data) => {
     signIn(data.email, data.password)
