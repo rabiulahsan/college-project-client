@@ -6,24 +6,22 @@ import UseAuth from "../../Hook/UseAuth";
 import { useEffect, useState } from "react";
 
 const MyColleges = () => {
-  const [reviews, setreviews] = useState([]);
+  const [review, setreview] = useState([]);
   const { user } = UseAuth();
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch(`http://localhost:5000/review?email=${user?.email}`)
       .then((response) => response.json())
       .then((data) => {
-        setreviews(data);
+        setreview(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [user]);
+  console.log(review);
 
-  const thisRating = reviews.filter((review) => review.email == user?.email);
-  console.log(thisRating);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
@@ -50,7 +48,7 @@ const MyColleges = () => {
     console.log(reviewBody);
 
     fetch(`http://localhost:5000/reviews`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -59,8 +57,7 @@ const MyColleges = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.modifiedCount == 1) {
-          reset();
+        if (data.modifiedCount == 1 || data.insertedId) {
           Toast.fire({
             icon: "success",
             title: "Review has given successfully",
@@ -83,6 +80,7 @@ const MyColleges = () => {
               <textarea
                 className="textarea textarea-bordered input-style"
                 placeholder="Provide review here"
+                defaultValue={review[0]?.review}
                 {...register("review", { required: true })}
               ></textarea>
               {errors.review && (
@@ -103,19 +101,19 @@ const MyColleges = () => {
                   <option selected value="">
                     Select Rating
                   </option>
-                  <option selected={thisRating?.rating === "1"} value="1">
+                  <option selected={review[0]?.rating == "1"} value="1">
                     1
                   </option>
-                  <option selected={thisRating?.rating === "2"} value="2">
+                  <option selected={review[0]?.rating == "2"} value="2">
                     2
                   </option>
-                  <option selected={thisRating?.rating === "3"} value="3">
+                  <option selected={review[0]?.rating == "3"} value="3">
                     3
                   </option>
-                  <option selected={thisRating?.rating === "4"} value="4">
+                  <option selected={review[0]?.rating == "4"} value="4">
                     4
                   </option>
-                  <option selected={thisRating?.rating === "5"} value="5">
+                  <option selected={review[0]?.rating == "5"} value="5">
                     5
                   </option>
                 </select>

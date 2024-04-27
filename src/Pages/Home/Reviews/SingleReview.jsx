@@ -2,7 +2,7 @@ import FadeAnimations from "../../../Components/Animations/FadeAnimations";
 
 /* eslint-disable react/prop-types */
 const SingleReview = ({ rev }) => {
-  const { image, name, review } = rev;
+  const { image, name, review, rating } = rev;
   return (
     <FadeAnimations direction="up" once={false} delay={0.4} duration={0.4}>
       <div className="border border-gray-400 p-5 text-center">
@@ -15,7 +15,7 @@ const SingleReview = ({ rev }) => {
         <p className="text-gray-600">{review}</p>
         <p className="text-gray-600 font-semibold text-lg mt-5">
           Rating:
-          <span className=""> 4.7</span>
+          <span className=""> {rating}</span>
         </p>
       </div>
     </FadeAnimations>
