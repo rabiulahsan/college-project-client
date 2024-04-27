@@ -76,7 +76,7 @@ const Login = () => {
               )}
             </div>
             {/* for error  */}
-            <p className="text-red-600 text-xl font-semibold">{error}</p>
+            <p className="text-red-600 text-lg font-semibold">{error}</p>
 
             <div className="form-control cursor-pointer text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               <input className=" cursor-pointer " type="submit" value="Login" />
