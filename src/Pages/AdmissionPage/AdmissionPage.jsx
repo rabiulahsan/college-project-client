@@ -1,12 +1,14 @@
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import Skeleton from "../../Components/Skeleton/Skeleton";
 import UseAllColleges from "../../Hook/UseAllColleges";
+
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import CollegeCard from "./CollegeCard";
 
 const AdmissionPage = () => {
   const [colleges, isLoading] = UseAllColleges();
+
   return (
     <div>
       <Navbar></Navbar>

@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import FadeAnimations from "../../Components/Animations/FadeAnimations";
+import useAdmitted from "../../Hook/useAdmitted";
+import Swal from "sweetalert2";
 const CollegeCard = ({ clg }) => {
   const {
     _id,
@@ -11,6 +13,11 @@ const CollegeCard = ({ clg }) => {
     annual_events,
     annual_sports,
   } = clg;
+
+  const { admitted } = useAdmitted();
+  const handleClick = () => {
+    Swal.fire("You are alreadey admitted");
+  };
   return (
     <FadeAnimations direction="up" once={true} delay={0.4} duration={0.4}>
       <div className="flex flex-col bg-white p-4 rounded-md hover:scale-105 duration-500 border border-gray-400 ">
@@ -31,9 +38,18 @@ const CollegeCard = ({ clg }) => {
         </p>
         <p className="font-bold mt-3 mb-7">Admission date: {admission_date}</p>
 
-        <button className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600">
-          <Link to={`/admission/${_id}`}>Admission</Link>
-        </button>
+        {admitted ? (
+          <button
+            className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600"
+            onClick={handleClick}
+          >
+            Admission
+          </button>
+        ) : (
+          <button className="green-btn mt-auto mx-auto w-2/5 hover:bg-green-600">
+            <Link to={`/admission/${_id}`}>Admission</Link>
+          </button>
+        )}
       </div>
     </FadeAnimations>
   );
