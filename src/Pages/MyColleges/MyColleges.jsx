@@ -7,11 +7,16 @@ import { useEffect, useState } from "react";
 import useAdmitted from "../../Hook/useAdmitted";
 import FadeAnimations from "../../Components/Animations/FadeAnimations";
 import { Player } from "@lottiefiles/react-lottie-player";
+import UseAllColleges from "../../Hook/UseAllColleges";
+import SingleCollegecard from "../Home/Featured/SingleCollegecard";
+import Skeleton from "../../Components/Skeleton/Skeleton";
 
 const MyColleges = () => {
   const [review, setreview] = useState([]);
+  const [users, setUsers] = useState([]);
   const { user } = UseAuth();
   const { admitted } = useAdmitted();
+  const [colleges, isLoading] = UseAllColleges();
 
   useEffect(() => {
     fetch(`http://localhost:5000/review?email=${user?.email}`)
@@ -21,7 +26,23 @@ const MyColleges = () => {
       })
       .catch((error) => console.error(error));
   }, [user]);
-  console.log(review);
+  // console.log(review);
+
+  // console.log(user);
+  useEffect(() => {
+    fetch("http://localhost:5000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const loggedUser = users.filter((u) => u.email == user?.email);
+  const college = colleges.filter(
+    (clg) => clg?._id == loggedUser[0]?.college_id
+  );
+  console.log(college[0]);
 
   const {
     register,
@@ -48,8 +69,9 @@ const MyColleges = () => {
       image: user?.photoURL,
       name: user?.displayName,
       email: user?.email,
+      college_name: loggedUser?.college_name,
     };
-    console.log(reviewBody);
+    // console.log(reviewBody);
 
     fetch(`http://localhost:5000/reviews`, {
       method: "POST",
@@ -73,71 +95,80 @@ const MyColleges = () => {
     <div>
       <Navbar></Navbar>
       {admitted ? (
-        <div className="mx-[8%] mb-[6%]">
-          <form onSubmit={handleSubmit(onSubmit)} className="relative">
-            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-              {/* review  */}
-              <div className="form-control w-full mb-4">
-                <label className="label block text-gray-700 text-sm font-bold">
-                  <span className="label-text font-semibold">Description</span>
-                </label>
-                <textarea
-                  className="textarea textarea-bordered input-style"
-                  placeholder="Provide review here"
-                  defaultValue={review[0]?.review}
-                  {...register("review", { required: true })}
-                ></textarea>
-                {errors.review && (
-                  <span className="text-red-600">Review is required</span>
-                )}
-              </div>
+        <>
+          <div className="grid  grid-cols-1 lg:grid-cols-1 px-[10%] my-[5%] ">
+            {isLoading && <Skeleton number={1}></Skeleton>}
 
-              {/* rating  */}
-              <div className="form-control w-full max-w-xs">
-                <label className="label block text-gray-700 text-sm font-bold">
-                  <span className="label-text font-semibold">
-                    Select Rating
-                  </span>
-                </label>
-                <div className="input-group">
-                  <select
-                    {...register("rating", { required: true })}
-                    className="select select-bordered text-black"
-                  >
-                    <option selected value="">
-                      Select Rating
-                    </option>
-                    <option selected={review[0]?.rating == "1"} value="1">
-                      1
-                    </option>
-                    <option selected={review[0]?.rating == "2"} value="2">
-                      2
-                    </option>
-                    <option selected={review[0]?.rating == "3"} value="3">
-                      3
-                    </option>
-                    <option selected={review[0]?.rating == "4"} value="4">
-                      4
-                    </option>
-                    <option selected={review[0]?.rating == "5"} value="5">
-                      5
-                    </option>
-                  </select>
-                  {errors.rating && (
-                    <span className="text-red-600 text-sm">
-                      Rating need to be given
+            <SingleCollegecard clg={college[0]}></SingleCollegecard>
+          </div>
+          <div className="mx-[8%] mb-[6%]">
+            <form onSubmit={handleSubmit(onSubmit)} className="relative">
+              <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+                {/* review  */}
+                <div className="form-control w-full mb-4">
+                  <label className="label block text-gray-700 text-sm font-bold">
+                    <span className="label-text font-semibold">
+                      Description
                     </span>
+                  </label>
+                  <textarea
+                    className="textarea textarea-bordered input-style"
+                    placeholder="Provide review here"
+                    defaultValue={review[0]?.review}
+                    {...register("review", { required: true })}
+                  ></textarea>
+                  {errors.review && (
+                    <span className="text-red-600">Review is required</span>
                   )}
                 </div>
+
+                {/* rating  */}
+                <div className="form-control w-full max-w-xs">
+                  <label className="label block text-gray-700 text-sm font-bold">
+                    <span className="label-text font-semibold">
+                      Select Rating
+                    </span>
+                  </label>
+                  <div className="input-group">
+                    <select
+                      {...register("rating", { required: true })}
+                      className="select select-bordered text-black"
+                    >
+                      <option selected value="">
+                        Select Rating
+                      </option>
+                      <option selected={review[0]?.rating == "1"} value="1">
+                        1
+                      </option>
+                      <option selected={review[0]?.rating == "2"} value="2">
+                        2
+                      </option>
+                      <option selected={review[0]?.rating == "3"} value="3">
+                        3
+                      </option>
+                      <option selected={review[0]?.rating == "4"} value="4">
+                        4
+                      </option>
+                      <option selected={review[0]?.rating == "5"} value="5">
+                        5
+                      </option>
+                    </select>
+                    {errors.rating && (
+                      <span className="text-red-600 text-sm">
+                        Rating need to be given
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <input
-              className="green-small-btn cursor-pointer font-bold absolute bottom-0 right-0"
-              type="submit"
-              value="Add review"
-            />
-          </form>
-        </div>
+              <input
+                className="green-small-btn cursor-pointer font-bold absolute bottom-0 right-0"
+                type="submit"
+                value="Add review"
+              />
+            </form>
+          </div>
+        </>
       ) : (
         <div className="pt-[7%] mb-[5%]">
           <FadeAnimations
