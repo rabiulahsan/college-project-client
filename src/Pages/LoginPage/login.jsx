@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import UseAuth from "../../Hook/UseAuth";
 import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
 import { useState } from "react";
+import GithubSignin from "../../Shared/GithubSignin/GithubSignin";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -85,6 +86,9 @@ const Login = () => {
           <p className="text-center text-gray-400 my-5">or</p>
           <div className="my-5">
             <GoogleSignin></GoogleSignin>
+          </div>
+          <div className="mb-3">
+            <GithubSignin></GithubSignin>
           </div>
           <p className="flex flex-col text-center text-gray-500">
             Don&apos;t have an account?

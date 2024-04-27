@@ -2,7 +2,7 @@ import { FiGithub } from "react-icons/fi";
 import UseAuth from "../../Hook/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 const GithubSignin = () => {
-  const { user, googleLogin } = UseAuth();
+  const { user, githubLogin } = UseAuth();
   console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,7 +14,7 @@ const GithubSignin = () => {
       alert("At first logout");
       return;
     } else {
-      googleLogin()
+      githubLogin()
         .then((result) => {
           const loggedInUser = result.user;
           const saveUser = {
