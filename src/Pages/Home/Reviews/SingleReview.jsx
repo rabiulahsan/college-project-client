@@ -13,6 +13,10 @@ const SingleReview = ({ rev }) => {
         />
         <p className="font-semibold text-lg mb-5">{name}</p>
         <p className="text-gray-600">{review}</p>
+        <p className="text-gray-600 font-semibold text-lg mt-5">
+          Rating:
+          <span className=""> 4.7</span>
+        </p>
       </div>
     </FadeAnimations>
   );

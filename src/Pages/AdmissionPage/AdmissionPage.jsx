@@ -11,7 +11,7 @@ const AdmissionPage = () => {
     <div>
       <Navbar></Navbar>
       <SectionTitle heading="All Colleges"></SectionTitle>
-      <div className="grid gap-x-20 gap-y-16 grid-cols-1 lg:grid-cols-3 px-[10%] mb-[5%]">
+      <div className="grid gap-x-10 gap-y-16 grid-cols-1 lg:grid-cols-3 px-[10%] mb-[5%]">
         {isLoading && <Skeleton number={9}></Skeleton>}
         {colleges?.map((clg) => (
           <CollegeCard key={clg._id} clg={clg}></CollegeCard>

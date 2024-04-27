@@ -83,6 +83,7 @@ const SearchPage = () => {
           ))}
         </div>
       )}
+      <div className="my-[4%]"></div>
       <Footer></Footer>
     </div>
   );
