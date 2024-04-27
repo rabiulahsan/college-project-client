@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import UseAuth from "../../Hook/UseAuth";
 import GoogleSignin from "../../Shared/GoogleSignin/GoogleSignin";
+import GithubSignin from "../../Shared/GithubSignin/GithubSignin";
 
 const Sign = () => {
   const {
@@ -194,6 +195,9 @@ const Sign = () => {
           <p className="text-center text-gray-600 my-2">or</p>
           <div className="my-5">
             <GoogleSignin></GoogleSignin>
+          </div>
+          <div className="mb-3">
+            <GithubSignin></GithubSignin>
           </div>
           <p className="flex flex-col text-center text-gray-500">
             Don&apos;t have an account?
