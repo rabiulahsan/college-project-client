@@ -21,7 +21,18 @@ const SingleCollegePage = () => {
     <div>
       <Navbar></Navbar>
       <PageBanner details={details}></PageBanner>
-      <div className=""></div>
+      <div className="my-[3%] flex  justify-center items-center ">
+        <div className=" w-1/2">
+          <img
+            className="h-[450px] w-full mx-auto "
+            src={loadedData[0]?.image}
+            alt=""
+          />
+          <p className="text-3xl text-gray-600 font-bold text-center mt-5">
+            {loadedData[0]?.name}
+          </p>
+        </div>
+      </div>
       <Footer></Footer>
     </div>
   );
